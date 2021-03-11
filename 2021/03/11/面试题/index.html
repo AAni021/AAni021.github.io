@@ -22,17 +22,17 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"aani021.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"aani021.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="以下结果均在64位编译环境下得出  1. 123char str[] &#x3D; &quot;hello&quot;;char *p &#x3D; str;int n &#x3D; 10;  请计算：(1) sizeof(str)  &#x3D;    ​                (2)sizeof(p)  &#x3D;   ​                (3)sizeof(n) &#x3D;  分析(1)6  sizeof()函数计算的是指">
+<meta name="description" content="以下结果均在64位编译环境下得出  1. 123char str[] &#x3D; &quot;hello&quot;;char *p &#x3D; str;int n &#x3D; 10;  请计算：(1) sizeof(str)  &#x3D;    ​                (2)sizeof(p)  &#x3D;   ​                (3)sizeof(n) &#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="智邮普创2021春季纳新面试题">
 <meta property="og:url" content="http://aani021.github.io/2021/03/11/%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="AAni021&#39;s blog">
-<meta property="og:description" content="以下结果均在64位编译环境下得出  1. 123char str[] &#x3D; &quot;hello&quot;;char *p &#x3D; str;int n &#x3D; 10;  请计算：(1) sizeof(str)  &#x3D;    ​                (2)sizeof(p)  &#x3D;   ​                (3)sizeof(n) &#x3D;  分析(1)6  sizeof()函数计算的是指">
+<meta property="og:description" content="以下结果均在64位编译环境下得出  1. 123char str[] &#x3D; &quot;hello&quot;;char *p &#x3D; str;int n &#x3D; 10;  请计算：(1) sizeof(str)  &#x3D;    ​                (2)sizeof(p)  &#x3D;   ​                (3)sizeof(n) &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-11T09:59:48.801Z">
-<meta property="article:modified_time" content="2021-03-11T13:11:51.412Z">
+<meta property="article:modified_time" content="2021-03-11T15:33:37.631Z">
 <meta property="article:author" content="AAni021">
 <meta property="article:tag" content="面试题 -c语言">
 <meta name="twitter:card" content="summary">
@@ -130,7 +130,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">3</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">0</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">2</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">3</span></a></li>
   </ul>
 </nav>
@@ -162,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%94%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E9%A2%98%E8%80%83%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">本题考点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">用法总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-number">5.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-1"><span class="nav-number">6.</span> <span class="nav-text">答案</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%94%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E9%A2%98%E8%80%83%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">本题考点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">用法总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-number">5.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-1"><span class="nav-number">6.</span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90-2"><span class="nav-number">7.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-2"><span class="nav-number">8.</span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E8%80%83%E7%82%B9"><span class="nav-number">9.</span> <span class="nav-text">主要考点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90-3"><span class="nav-number">10.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90-4"><span class="nav-number">11.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%94%E6%A1%88-3"><span class="nav-number">12.</span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90-5"><span class="nav-number">13.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90-6"><span class="nav-number">14.</span> <span class="nav-text">分析</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -181,6 +181,12 @@
           <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
@@ -271,7 +277,16 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-03-11 17:59:48 / 修改时间：21:11:51" itemprop="dateCreated datePublished" datetime="2021-03-11T17:59:48+08:00">2021-03-11</time>
+      <time title="创建时间：2021-03-11 17:59:48 / 修改时间：23:33:37" itemprop="dateCreated datePublished" datetime="2021-03-11T17:59:48+08:00">2021-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/c%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">c语言</span></a>
+        </span>
     </span>
 
   
@@ -289,14 +304,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>668</span>
+      <span>2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -316,6 +331,8 @@
 <p>请计算：(1) sizeof(str)  =   </p>
 <p>​                (2)sizeof(p)  =  </p>
 <p>​                (3)sizeof(n) = </p>
+<span id="more"></span>
+
 <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>(1)6</p>
 <blockquote>
 <p>sizeof()函数计算的是指定数据类型所占字节数，而在字符串中<code>\n</code>也占一个字节，当使用strlen()函数时<code>\n</code>是不算在内的</p>
@@ -338,11 +355,40 @@
 <p> 3.还可以当分隔符，如int i，j;</p>
 <h1 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h1><p>在本题中m的值等于x，n的值等于y，简单的说在赋值运算时就是不加括号取第一个，加了括号取最后一个</p>
 <p>3.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">one</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    <span class="keyword">int</span> z;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">one</span> <span class="title">a</span> =</span> &#123; <span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span> &#125;;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">one</span> *<span class="title">p</span> =</span> &amp;a; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>, *(<span class="keyword">int</span>*)p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">one</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    <span class="keyword">int</span> z;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">one</span> <span class="title">a</span> =</span> &#123; <span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span> &#125;;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">one</span> *<span class="title">p</span> =</span> &amp;a; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *(<span class="keyword">int</span>*)p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h1><blockquote>
 <p>1</p>
 </blockquote>
+<h1 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h1><p>首先<code>struct one *p = &amp;a;</code>表示p是一个结构体指针，并且指向<code>struct one</code>型的结构体<code>a</code>，然后在第11行中，p先是被强转为<code>int</code>型指针，这里可以理解为地址加偏移量的访问方式，这里<code>*(int*)P</code>指向了x</p>
+<p>4.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span>&#123;</span> </span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">char</span> b; </span><br><span class="line">    <span class="keyword">double</span> c; </span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="keyword">double</span> b;</span><br><span class="line">    <span class="keyword">int</span> c; </span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">C</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> a; </span><br><span class="line">    <span class="keyword">double</span> b; </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">A</span> <span class="title">c</span>;</span> </span><br><span class="line">    <span class="keyword">int</span> d;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d,%d\n&quot;</span>,<span class="keyword">sizeof</span>(struct A),<span class="keyword">sizeof</span>(struct B)); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sizeof</span>(struct C)); </span><br></pre></td></tr></table></figure>
+
+<h1 id="答案-2"><a href="#答案-2" class="headerlink" title="答案"></a>答案</h1><p>24,16</p>
+<p>48</p>
+<h1 id="主要考点"><a href="#主要考点" class="headerlink" title="主要考点"></a>主要考点</h1><p>结构体内存的计算问题</p>
+<h1 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h1><p>为了提高计算机的寻址效率，处理器对特定的数据结构引入了特殊的内存对齐需求，对其的字节数可以是4也可以是8。在计算结构体的内存时主要有以下几个法则</p>
+<p><strong>1. 对于需要X字节的原始数据类型，地址必须是x的倍数</strong>*</p>
+<p><strong>2. struct的起始地址决定于其成员变量中的数据类型的sizeof（）最大值作为对其条件，即最终所占内存为结构体成员中所占最大字节数的整倍数</strong></p>
+<p>在知道了以上法则后我们可以来计算上述结构体所占内存了</p>
+<p>5.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>* p;</span><br><span class="line">    *p = *a;</span><br><span class="line">    *a = *b;</span><br><span class="line">    *b = *p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>问：该程序有什么错误？</strong></p>
+<h1 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h1><p>这道题是典型的指针未初始化就使用的错误。首先，<code>int* p</code>定义了一个指针型变量，但是接下来这一步<code>*p = *a</code>中，<code>*p</code>未经初始化，系统还没有给p分配内存，此时我们还不能使用它（<del>没有房子，娶了媳妇往哪放啊</del>）</p>
+<p>6.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>,<span class="built_in">printf</span>(<span class="string">&quot;c%c&quot;</span>,<span class="built_in">printf</span>(<span class="string">&quot;zyp&quot;</span>)));</span><br></pre></td></tr></table></figure>
+
+<p><strong>问：运行结果是？</strong></p>
+<h1 id="答案-3"><a href="#答案-3" class="headerlink" title="答案"></a>答案</h1><p>zypc</p>
+<h1 id="分析-5"><a href="#分析-5" class="headerlink" title="分析"></a>分析</h1><p><strong>这题很明显，是考考printf函数的使用</strong>，首先，要打印出最终结果，函数是要层层调用的，先从最里层的printf函数开始，目标是打印<code>zyp</code>，然后是第二个printf函数，第二个printf函数打印c并将最内层的返回值以<code>%c</code>的形式打印，这里最内层的printf函数返回值是3，也就是它成功打印的字符个数，而ascII码3所代表的字符意义是本文开始，此时结果是<code>zypc</code>，最后，最外层的printf函数和第二个一样，将ascII码4所代表的字符打印出来，意义是本文结束，那么最后的结果就是<code>zypc</code>了</p>
+<p><del>这题的答案，真不愧是智邮的面试题</del></p>
+<p>7.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="keyword">char</span> *str=&amp;a;</span><br><span class="line">    strcopy(str,<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">    <span class="built_in">printf</span>(str)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>问：该程序有什么错误？</strong></p>
+<h1 id="分析-6"><a href="#分析-6" class="headerlink" title="分析"></a>分析</h1><p><del>最后一题啦，似乎有点简单呢哈哈哈哈</del></p>
+<p>首先很明显，strcopy函数使用错误了，strcopy函数是字符串（字符数组）之间的复制，在此处<code>“hello”</code>并不是字符数组的形式，而且，后面的printf函数也使用错了</p>
 
     </div>
 
@@ -369,7 +415,7 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98-c%E8%AF%AD%E8%A8%80/" rel="tag"># 面试题 -c语言</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98-c%E8%AF%AD%E8%A8%80/" rel="tag"><i class="fa fa-tag"></i> 面试题 -c语言</a>
           </div>
 
         
@@ -436,14 +482,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">1k</span>
+    <span title="站点总字数">2k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1 分钟</span>
+    <span title="站点阅读时长">2 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -464,7 +510,7 @@
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 <div class="powered-by">
 <i class="fa fa-user-md"></i>
