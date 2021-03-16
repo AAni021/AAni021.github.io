@@ -126,9 +126,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">4</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">3</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">5</span></a></li>
   </ul>
 </nav>
 
@@ -174,20 +174,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -247,7 +247,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://aani021.github.io/2021/03/12/%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8%EF%BC%9F%E6%80%8E%E6%A0%B7%E7%90%86%E8%A7%A3%E5%A2%9E%E5%88%A0%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -260,7 +260,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/12/%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8%EF%BC%9F%E6%80%8E%E6%A0%B7%E7%90%86%E8%A7%A3%E5%A2%9E%E5%88%A0%EF%BC%9F/" class="post-title-link" itemprop="url">什么是链表，怎样理解增删？</a>
+          <a href="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">使用Ubuntu搭建web服务器</a>
         </h2>
 
         <div class="post-meta-container">
@@ -272,7 +272,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-03-12 16:00:25 / 修改时间：16:06:37" itemprop="dateCreated datePublished" datetime="2021-03-12T16:00:25+08:00">2021-03-12</time>
+      <time title="创建时间：2021-03-16 20:00:52 / 修改时间：23:26:21" itemprop="dateCreated datePublished" datetime="2021-03-16T20:00:52+08:00">2021-03-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -280,7 +280,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">C语言</span></a>
+          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
         </span>
     </span>
 
@@ -292,7 +292,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3</span>
+      <span>836</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -310,10 +310,126 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>待补充</p>
-</blockquote>
+          <p>在VMware上搭建好了ubuntu虚拟机后就可以使用它来搭建web服务器了，以下为我第一次搭建的过程</p>
+<blockquote>
+<p>事前准备：</p>
+<p>桌面单击右键进入终端</p>
+<p>切换到root权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
 
+<p>输入密码，进入root权限，我们的工具需要在root权限下下载</p>
+</blockquote>
+<p><strong>接下来正式进入搭建工作</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="AAni021">
+      <meta itemprop="description" content="你的选择决定你的人生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AAni021's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/" class="post-title-link" itemprop="url">使用VMware安装Ubuntu</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-16 15:08:13 / 修改时间：20:05:11" itemprop="dateCreated datePublished" datetime="2021-03-16T15:08:13+08:00">2021-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>870</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="安装VMware"><a href="#安装VMware" class="headerlink" title="安装VMware"></a>安装VMware</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>下载地址： <a target="_blank" rel="noopener" href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">Download VMware Workstation Pro</a></p>
+<p>点击后进入，开始下载</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/1.png" class="">
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>双击打开下载好的程序</p>
+<p>点击下一步，开始安装步骤</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -695,14 +811,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">6k</span>
+    <span title="站点总字数">7k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5 分钟</span>
+    <span title="站点阅读时长">7 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
