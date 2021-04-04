@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"aani021.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="安装VMware下载下载地址： Download VMware Workstation Pro 点击后进入，开始下载   安装双击打开下载好的程序 点击下一步，开始安装步骤">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用VMware安装Ubuntu">
+<meta property="og:url" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/index.html">
+<meta property="og:site_name" content="AAni021&#39;s blog">
+<meta property="og:description" content="安装VMware下载下载地址： Download VMware Workstation Pro 点击后进入，开始下载   安装双击打开下载好的程序 点击下一步，开始安装步骤">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/1.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/2.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/3.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/4.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/5.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/6.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/7.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/8.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/9.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/10.png">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E4%B8%BB%E9%A1%B5.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E7%82%B9%E5%87%BB%E4%B8%8B%E8%BD%BD.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%90%91%E5%AF%BC.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x2.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x3.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x4.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x5.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x6.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x7.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x8.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x9.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x10.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x11.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x12.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%AE%8C%E6%88%90%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%A1%AC%E4%BB%B6.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%BC%80%E5%90%AF%E6%AD%A4%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%BC%80%E5%90%AF%E6%BC%94%E7%A4%BA.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%AE%89%E8%A3%85%E7%95%8C%E9%9D%A2.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%AE%89%E8%A3%85%E9%80%89%E9%A1%B9.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E7%A3%81%E7%9B%98%E6%B8%85%E7%90%86.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E9%80%89%E6%8B%A9%E4%BD%8D%E7%BD%AE.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E8%AE%BE%E7%BD%AE%E8%B4%A6%E6%88%B7.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85.jpg">
+<meta property="article:published_time" content="2021-03-16T07:08:13.206Z">
+<meta property="article:modified_time" content="2021-03-16T12:05:11.874Z">
+<meta property="article:author" content="AAni021">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/1.png">
+
+
+<link rel="canonical" href="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>使用VMware安装Ubuntu | AAni021's blog</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">AAni021's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">走下去，你将看到一个更精彩的人生</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85VMware"><span class="nav-number">1.</span> <span class="nav-text">安装VMware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">激活</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">虚拟机內安装Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDUbuntu%E9%95%9C%E5%83%8F"><span class="nav-number">2.1.</span> <span class="nav-text">下载Ubuntu镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">新建虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Ubuntu"><span class="nav-number">2.3.</span> <span class="nav-text">安装Ubuntu</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">AAni021</p>
+  <div class="site-description" itemprop="description">记录我的学习与生活</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://aani021.github.io/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="AAni021">
+      <meta itemprop="description" content="记录我的学习与生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AAni021's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用VMware安装Ubuntu
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-16 15:08:13 / 修改时间：20:05:11" itemprop="dateCreated datePublished" datetime="2021-03-16T15:08:13+08:00">2021-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>870</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="安装VMware"><a href="#安装VMware" class="headerlink" title="安装VMware"></a>安装VMware</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>下载地址： <a target="_blank" rel="noopener" href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">Download VMware Workstation Pro</a></p>
+<p>点击后进入，开始下载</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/1.png" class="">
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>双击打开下载好的程序</p>
+<p>点击下一步，开始安装步骤</p>
+<span id="more"></span>
+
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/2.png" class="">
+
+<p>接受条款并开始下一步</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/3.png" class="">
+
+<p>点击自动安装，开始下一步</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/4.png" class="">
+
+<p>选择安装路径，最好不要在系统盘，确认后开始下一步</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/5.png" class="">
+
+<p>勾选取消就ok，少点无用通知</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/6.png" class="">
+
+<p>点击下一步，安装即将完成</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/7.png" class="">
+
+<p>点击安装</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/8.png" class="">
+
+<p>等待一会，安装成功</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/9.png" class="">
+
+<h3 id="激活"><a href="#激活" class="headerlink" title="激活"></a>激活</h3><p>激活码(网上可搜到)</p>
+<ul>
+<li><p>ZF3R0-FHED2-M80TY-8QYGC-NPKYF</p>
+</li>
+<li><p>ZF71R-DMX85-08DQY-8YMNC-PPHV8</p>
+</li>
+<li><p>YF390-0HF8P-M81RQ-2DXQE-M2UT6</p>
+<p>复制输入任意一个完成激活！</p>
+</li>
+</ul>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/10.png" class="">
+
+<p>点击进入主页面</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E4%B8%BB%E9%A1%B5.jpg" class="">
+
+<p><strong>至此完成VMware安装</strong></p>
+<h1 id="虚拟机內安装Ubuntu"><a href="#虚拟机內安装Ubuntu" class="headerlink" title="虚拟机內安装Ubuntu"></a>虚拟机內安装Ubuntu</h1><h2 id="下载Ubuntu镜像"><a href="#下载Ubuntu镜像" class="headerlink" title="下载Ubuntu镜像"></a>下载Ubuntu镜像</h2><p>点击下载：<a target="_blank" rel="noopener" href="https://ubuntu.com/download/desktop">Download Ubuntu Desktop</a></p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E7%82%B9%E5%87%BB%E4%B8%8B%E8%BD%BD.jpg" class="">
+
+<h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p>打开安装好的VMware,进入主页面，点击创建新的虚拟机，进入新建虚拟机向导</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%90%91%E5%AF%BC.jpg" class="">
+
+<p>选择自定义（高级），点击下一步</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x2.jpg" class="">
+
+<p>继续</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x3.jpg" class="">
+
+<p>选择稍后安装操作系统，点击下一步</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x4.jpg" class="">
+
+<p>我们要安装ubuntu,当然选择Linux了，ubuntu版本最好选择64位</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x5.jpg" class="">
+
+<p>选择合适的路径，最好不要在系统盘，名称自定</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x6.jpg" class="">
+
+<p>这一步看自己电脑配置，下一步会有提示</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x7.jpg" class="">
+
+<p>选择推荐的就ok</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x8.jpg" class="">
+
+<p>选择使用网络地址转换（NAT）</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x9.jpg" class="">
+
+<p>选择推荐的LSI Logic(L)就行</p>
+<p>后续步骤如下：</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x10.jpg" class="">
+
+
+
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x11.jpg" class="">
+
+
+
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/x12.jpg" class="">
+
+<p>磁盘设置20G就够了，也可以多一点</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%AE%8C%E6%88%90%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg" class="">
+
+<p>点击自定义硬件，进入新 CD/DVD(SATA)选项，点击使用ISO文件</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%A1%AC%E4%BB%B6.jpg" class="">
+
+<p>选择你下载好的映像文件，点击关闭退出</p>
+<p>最后点击完成虚拟机就创建好啦</p>
+<h2 id="安装Ubuntu"><a href="#安装Ubuntu" class="headerlink" title="安装Ubuntu"></a>安装Ubuntu</h2><p>点击开启此虚拟机，即可开始安装</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%BC%80%E5%90%AF%E6%AD%A4%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg" class="">
+
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%BC%80%E5%90%AF%E6%BC%94%E7%A4%BA.jpg" class="">
+
+<p>进入后稍等一会儿，开始安装</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%AE%89%E8%A3%85%E7%95%8C%E9%9D%A2.jpg" class="">
+
+<p>选择中文简体，点击安装Ubuntu</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80.jpg" class="">
+
+<p>键盘布局自带英文，我们也可以在系统内下载中文输入法，这里选择Chinese</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%AE%89%E8%A3%85%E9%80%89%E9%A1%B9.jpg" class="">
+
+<p>我们只是最为学习安装Ubuntu,上面选择最小安装即可.</p>
+<p>其他选项将安装Ubuntu时下载更新取消，由于下载源在国外，选择后更新会很慢，这里在进入桌面后换一下源在更新就好了</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E7%A3%81%E7%9B%98%E6%B8%85%E7%90%86.jpg" class="">
+
+<p>要注意的是这里清理的是我们分配给虚拟机的20G磁盘，里面本来就是空的，清空无所谓</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E9%80%89%E6%8B%A9%E4%BD%8D%E7%BD%AE.jpg" class="">
+
+
+
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E8%AE%BE%E7%BD%AE%E8%B4%A6%E6%88%B7.jpg" class="">
+
+<p>在这里设置自己的账户</p>
+<img src="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85.jpg" class="">
+
+<p>开始安装，等待大约一个多小时，安装完成</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/11/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="prev" title="智邮普创2021春季纳新面试题">
+                  <i class="fa fa-chevron-left"></i> 智邮普创2021春季纳新面试题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="next" title="使用Ubuntu搭建web服务器">
+                  使用Ubuntu搭建web服务器 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AAni021</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">14k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">13 分钟</span>
+  </span>
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i>
+<span id="busuanzi_container_site_uv">
+  本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+</span>
+<span id="busuanzi_container_site_pv">
+    &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+</div>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

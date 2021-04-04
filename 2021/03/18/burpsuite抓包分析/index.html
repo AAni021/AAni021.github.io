@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"aani021.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="任务目标：使用burpsuite抓包，访问192.168.64.128分别找到一个http请求和响应分组，分析其报文格式 事前准备：安装Burp Suite pro v1.7.37并配制好foxfire">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Burpsuite抓包分析">
+<meta property="og:url" content="http://aani021.github.io/2021/03/18/burpsuite%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="AAni021&#39;s blog">
+<meta property="og:description" content="任务目标：使用burpsuite抓包，访问192.168.64.128分别找到一个http请求和响应分组，分析其报文格式 事前准备：安装Burp Suite pro v1.7.37并配制好foxfire">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://aani021.github.io/2021/03/18/burpsuite%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/%E5%8E%9F%E5%9B%BE1.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/18/burpsuite%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/%E5%8E%9F%E5%9B%BE2.jpg">
+<meta property="article:published_time" content="2021-03-18T06:19:42.959Z">
+<meta property="article:modified_time" content="2021-03-18T11:37:27.973Z">
+<meta property="article:author" content="AAni021">
+<meta property="article:tag" content="web安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://aani021.github.io/2021/03/18/burpsuite%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/%E5%8E%9F%E5%9B%BE1.jpg">
+
+
+<link rel="canonical" href="http://aani021.github.io/2021/03/18/burpsuite%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>Burpsuite抓包分析 | AAni021's blog</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">AAni021's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">走下去，你将看到一个更精彩的人生</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.</span> <span class="nav-text">HTTP请求报文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%A1%8C"><span class="nav-number">1.1.1.</span> <span class="nav-text">请求行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%E9%83%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">请求头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.3.</span> <span class="nav-text">请求数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">响应报文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-number">2.1.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%A1%8C"><span class="nav-number">2.1.1.</span> <span class="nav-text">状态行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="nav-number">2.1.2.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E5%86%85%E5%AE%B9"><span class="nav-number">2.1.3.</span> <span class="nav-text">响应内容</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">AAni021</p>
+  <div class="site-description" itemprop="description">记录我的学习与生活</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://aani021.github.io/2021/03/18/burpsuite%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="AAni021">
+      <meta itemprop="description" content="记录我的学习与生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AAni021's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Burpsuite抓包分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-18 14:19:42 / 修改时间：19:37:27" itemprop="dateCreated datePublished" datetime="2021-03-18T14:19:42+08:00">2021-03-18</time>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>任务目标：使用burpsuite抓包，访问192.168.64.128分别找到一个http请求和响应分组，分析其报文格式</p>
+<p>事前准备：安装Burp Suite pro v1.7.37并配制好foxfire</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h1><p>抓包后获得如下请求报文</p>
+<img src="/2021/03/18/burpsuite%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/%E5%8E%9F%E5%9B%BE1.jpg" class="">
+
+<p>具体报文如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F; HTTP&#x2F;1.1</span><br><span class="line">Host: 192.168.64.128</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko&#x2F;20100101 Firefox&#x2F;86.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">If-Modified-Since: Thu, 18 Mar 2021 07:35:47 GMT</span><br><span class="line">If-None-Match: &quot;e8-5bdcaa5e4f16b-gzip&quot;</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br></pre></td></tr></table></figure>
+
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>请求报文由三部分组成</p>
+<ul>
+<li><p>请求行</p>
+</li>
+<li><p>请求头部</p>
+</li>
+<li><p>请求数据</p>
+<h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><p>在以上报文中请求行是</p>
+<p><code>GET / HTTP/1.1</code></p>
+<p>组成：</p>
+<p>请求方式+url+协议版本（中间有空格隔开）</p>
+<p>对应上述请求行就是</p>
+<p>请求方式：GET</p>
+<p>协议版本：HTTP/1.1</p>
+<h3 id="请求头部"><a href="#请求头部" class="headerlink" title="请求头部"></a>请求头部</h3><p>在以上报文中请求头部是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Host: 192.168.64.128</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko&#x2F;20100101 Firefox&#x2F;86.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">If-Modified-Since: Thu, 18 Mar 2021 07:35:47 GMT</span><br><span class="line">If-None-Match: &quot;e8-5bdcaa5e4f16b-gzip&quot;</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br></pre></td></tr></table></figure>
+
+<p>组成格式：</p>
+<p>头部字段名： 值</p>
+<p>……….</p>
+<p>头部字段名： 值</p>
+<p>对应上述请求头部则是：</p>
+<p>头部字段名：</p>
+<p><code>Host</code>    请求的主机</p>
+<p><code>User-Agent</code>      浏览器身份表示字符，这里显示浏览器是Firefox的一些信息</p>
+<p><code>Accept</code>    能够接受的回应内容类型</p>
+<p><code>Accept-Language</code>    能够接受的回应内容的自然语言列表</p>
+<p><code>Accept-Encoding</code>     能够接受的编码方式</p>
+<p><code>Connection</code>    该浏览器想要优先使用的链接类型，这里表示链接中断</p>
+<p><code>Upgrade-Insecure-Requests</code>    要求服务器升级到另一个协议，这里的意思是告诉浏览器，可以把所属本站的所有 http 连接升级为 https 连接。</p>
+<p><code>If-Modified-Since</code>    在第二次请求该url时询问该时间之后文件是否有被修改，后面跟的时间是本地浏览器存储的文件修改时间</p>
+<p><code>If-None-Match:</code>    当用户上次更新某个资源以来，该资源未被修改的情况下，更新该资源</p>
+<p><code>Cache-Control</code>    控制缓存</p>
+<h3 id="请求数据"><a href="#请求数据" class="headerlink" title="请求数据"></a>请求数据</h3><p>这里请求数据可以没有</p>
+<h1 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h1><p>抓包后获得响应报文如下：</p>
+<img src="/2021/03/18/burpsuite%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/%E5%8E%9F%E5%9B%BE2.jpg" class=""></li>
+</ul>
+<p>具体报文如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br><span class="line">Date: Thu, 18 Mar 2021 08:47:20 GMT</span><br><span class="line">Server: Apache&#x2F;2.4.18 (Ubuntu)</span><br><span class="line">Last-Modified: Thu, 18 Mar 2021 07:35:47 GMT</span><br><span class="line">ETag: &quot;e8-5bdcaa5e4f16b-gzip&quot;</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Vary: Accept-Encoding</span><br><span class="line">Content-Length: 232</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: text&#x2F;html</span><br><span class="line"></span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;https:&#x2F;&#x2F;zypc.xupt.edu.cn&#x2F;upload&#x2F;Organization&#x2F;logo26-1525929442.jpg&quot;&gt;</span><br><span class="line">        &lt;iframe src&#x3D;&quot;file:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;2.html&quot; width&#x3D;100% height&#x3D;100% frameborder&#x3D;&quot;0&quot;&gt;&lt;iframe&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><p>响应报文结构：</p>
+<ul>
+<li>状态行</li>
+<li>响应头</li>
+<li>响应内容</li>
+</ul>
+<h3 id="状态行"><a href="#状态行" class="headerlink" title="状态行"></a>状态行</h3><p>状态行组成</p>
+<p>http协议版本+状态码+状态码描述（中间由空格隔开）</p>
+<p>在以上报文中</p>
+<p><code>HTTP/1.1</code> —-&gt;http协议版本1.1</p>
+<p><code>200</code> —–&gt; 状态码 </p>
+<p><code>OK</code>—–&gt;状态码描述，表示请求被服务器正常处理</p>
+<blockquote>
+<p>常见状态码：</p>
+<ul>
+<li><strong>200 OK</strong></li>
+</ul>
+<p>　　　　表示请求被服务器正常处理 </p>
+<ul>
+<li><strong>302 Found</strong> </li>
+</ul>
+<p>　　　　临时重定向，表示请求的资源临时搬到了其他位置 </p>
+<ul>
+<li><strong>304 Not Modified</strong> </li>
+</ul>
+<p>　　　　表示客户端发送附带条件的请求时，条件不满足 </p>
+<ul>
+<li><strong>400 Bad Request</strong> </li>
+</ul>
+<p>　　　　表示请求报文存在语法错误或参数错误，服务器不理解 </p>
+<ul>
+<li><strong>403 Forbidden</strong> </li>
+</ul>
+<p>　　　　表示对请求资源的访问被服务器拒绝了 </p>
+<ul>
+<li><strong>404 Not Found</strong> </li>
+</ul>
+<p>　　　　表示服务器找不到你请求的资源</p>
+<ul>
+<li><strong>500 Internal Server Error</strong> </li>
+</ul>
+<p>　　　　表示服务器执行请求的时候出错了 </p>
+</blockquote>
+<h3 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h3><p><code>Server</code>        表示服务器，这里是<code>Apache/2.4.18 (Ubuntu)</code>,，表示我用的是Ubuntu下的2.4.18版本的Apache</p>
+<p><code>Last-Modified</code>        表示资源的最后修改时间</p>
+<p><code>ETag</code>        用于标示URL对象是否改变</p>
+<p><code>Accept-Ranges</code>        是由服务器使用以通告其支持部分请求的标志物。此字段的值表示可用于定义范围的单位,这里的范围是字节</p>
+<p><code>Vary</code>        表示不可缓存的请求头列表</p>
+<p><code>Content-Length</code>        表示正文的长度</p>
+<p><code>Connection</code>        表示连接方式，这里连接断开了，显示的是close</p>
+<p><code>Content-Type</code>        显示正文的类型，这里是text/html,表示我的正文由文本文档和html格式构成</p>
+<h3 id="响应内容"><a href="#响应内容" class="headerlink" title="响应内容"></a>响应内容</h3><p>也就是服务端返回给请求端的信息，这里返回的是我的网页源码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://zypc.xupt.edu.cn/upload/Organization/logo26-1525929442.jpg&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;file:///var/www/html/2.html&quot;</span> <span class="attr">width</span>=<span class="string">100%</span> <span class="attr">height</span>=<span class="string">100%</span> <span class="attr">frameborder</span>=<span class="string">&quot;0&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/web%E5%AE%89%E5%85%A8/" rel="tag"># web安全</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="prev" title="使用Ubuntu搭建web服务器">
+                  <i class="fa fa-chevron-left"></i> 使用Ubuntu搭建web服务器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/18/%E4%BD%BF%E7%94%A8wireshark%E6%9D%A5%E5%88%86%E6%9E%90tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" rel="next" title="利用wiresshark来分析tcp三次握手和四次挥手">
+                  利用wiresshark来分析tcp三次握手和四次挥手 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AAni021</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">14k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">13 分钟</span>
+  </span>
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i>
+<span id="busuanzi_container_site_uv">
+  本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+</span>
+<span id="busuanzi_container_site_pv">
+    &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+</div>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

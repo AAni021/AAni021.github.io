@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"aani021.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="在VMware上搭建好了ubuntu虚拟机后就可以使用它来搭建web服务器了，以下为我第一次搭建的过程  事前准备： 桌面单击右键进入终端 切换到root权限 1sudo su  输入密码，进入root权限，我们的工具需要在root权限下下载  接下来正式进入搭建工作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Ubuntu搭建web服务器">
+<meta property="og:url" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="AAni021&#39;s blog">
+<meta property="og:description" content="在VMware上搭建好了ubuntu虚拟机后就可以使用它来搭建web服务器了，以下为我第一次搭建的过程  事前准备： 桌面单击右键进入终端 切换到root权限 1sudo su  输入密码，进入root权限，我们的工具需要在root权限下下载  接下来正式进入搭建工作">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85Apache2.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85Apache2%E5%AE%8C%E6%88%90.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E6%B5%8B%E8%AF%95.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85net-tools.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E6%9F%A5%E8%AF%A2ip.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E4%B8%BB%E6%9C%BA%E6%B5%8B%E8%AF%95.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysql-server.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%94%99%E8%AF%AF.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysqlserver2.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysql-client-5.7.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysql-client-core-5.7.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85libtinfo5.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysql-server3.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%AE%BE%E5%AE%9A%E5%AF%86%E7%A0%81.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E7%A1%AE%E5%AE%9A%E5%AF%86%E7%A0%81.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E7%99%BB%E5%BD%95mysql.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E6%B5%8B%E8%AF%95mysql.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%80%80%E5%87%BAmysql.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85php.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E4%B8%8B%E8%BD%BDvim.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%86%99%E5%85%A5%E9%A1%B5%E9%9D%A2.jpg">
+<meta property="og:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%A1%B5%E9%9D%A2.jpg">
+<meta property="article:published_time" content="2021-03-16T12:00:52.607Z">
+<meta property="article:modified_time" content="2021-03-19T10:51:03.474Z">
+<meta property="article:author" content="AAni021">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85Apache2.jpg">
+
+
+<link rel="canonical" href="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>使用Ubuntu搭建web服务器 | AAni021's blog</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">AAni021's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">走下去，你将看到一个更精彩的人生</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDApache2"><span class="nav-number">1.</span> <span class="nav-text">下载Apache2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90"><span class="nav-number">1.1.</span> <span class="nav-text">安装完成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">1.2.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85mysql"><span class="nav-number">2.</span> <span class="nav-text">安装mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85php"><span class="nav-number">3.</span> <span class="nav-text">安装php</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E9%A1%B5%E9%9D%A2"><span class="nav-number">4.</span> <span class="nav-text">部署页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">AAni021</p>
+  <div class="site-description" itemprop="description">记录我的学习与生活</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://aani021.github.io/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="AAni021">
+      <meta itemprop="description" content="记录我的学习与生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AAni021's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Ubuntu搭建web服务器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-16 20:00:52" itemprop="dateCreated datePublished" datetime="2021-03-16T20:00:52+08:00">2021-03-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-19 18:51:03" itemprop="dateModified" datetime="2021-03-19T18:51:03+08:00">2021-03-19</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在VMware上搭建好了ubuntu虚拟机后就可以使用它来搭建web服务器了，以下为我第一次搭建的过程</p>
+<blockquote>
+<p>事前准备：</p>
+<p>桌面单击右键进入终端</p>
+<p>切换到root权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+
+<p>输入密码，进入root权限，我们的工具需要在root权限下下载</p>
+</blockquote>
+<p><strong>接下来正式进入搭建工作</strong></p>
+<span id="more"></span>
+
+<h1 id="下载Apache2"><a href="#下载Apache2" class="headerlink" title="下载Apache2"></a>下载Apache2</h1><p><code>apt-get install apache2</code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85Apache2.jpg" class="">
+
+<p>有遇到选择yes or no时选择yes就可以了</p>
+<h2 id="安装完成"><a href="#安装完成" class="headerlink" title="安装完成"></a>安装完成</h2><img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85Apache2%E5%AE%8C%E6%88%90.jpg" class="">
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>打开浏览器访问<code>127.0.0.1</code>，可以看到如下页面：</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E6%B5%8B%E8%AF%95.jpg" class="">
+
+<p>这是安装Apache2后的默认页面，出现这个说明安装成功</p>
+<p>也可以安装net-tools来查询自己的ip，在主机上访问查询</p>
+<p>安装命令：</p>
+<p><code>apt-get install net-tools</code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85net-tools.jpg" class="">
+
+<p>输入<code>ifconfig</code>查询ip：</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E6%9F%A5%E8%AF%A2ip.jpg" class="">
+
+<p>查询发现ip为<code>192.168.64.128</code></p>
+<p>回到主机访问结果如下:</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E4%B8%BB%E6%9C%BA%E6%B5%8B%E8%AF%95.jpg" class="">
+
+<p>发现效果一样，说明这已经是一个初步的服务器了</p>
+<h1 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h1><p>输入</p>
+<p><code>apt-get install mysql-server</code>,开始安装</p>
+<p>但是出现了问题</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysql-server.jpg" class="">
+
+<p>在输入</p>
+<p><code>sudo apt-get update</code>试着更新数据，但是还是失败</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%94%99%E8%AF%AF.jpg" class="">
+
+<p>那就换一种方式，就跟着提示去下载对应的依赖包</p>
+<p>输入</p>
+<p><code>apt install mysql-server-5.7</code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysqlserver2.jpg" class="">
+
+<p>发现同样出错</p>
+<p>继续输入</p>
+<p><code>apt install mysql-client-5.7</code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysql-client-5.7.jpg" class="">
+
+<p>依旧出错</p>
+<p>继续输入</p>
+<p><code>apt install mysql-client-core-5.7</code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysql-client-core-5.7.jpg" class="">
+
+<p>可以看到依旧失败</p>
+<p>输入</p>
+<p><code>apt install libtinfo5</code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85libtinfo5.jpg" class="">
+
+<p>可以看到在试验多步后终于成功了，然后在回退安装上面几个包</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.jpg" class="">
+
+<p>可以看到全部成功，然后开始安装mysql-server-5.7</p>
+<p><code>apt install mysql-server-5.7</code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85mysql-server3.jpg" class="">
+
+<p>设定密码</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%AE%BE%E5%AE%9A%E5%AF%86%E7%A0%81.jpg" class="">
+
+<p>确定密码</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E7%A1%AE%E5%AE%9A%E5%AF%86%E7%A0%81.jpg" class="">
+
+<p>检查是否安装成功</p>
+<p>输入<code>sudo netstat -tap | grep mysql</code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E7%99%BB%E5%BD%95mysql.jpg" class="">
+
+<p>登录mysql</p>
+<p>输入<code>mysql -u root -p </code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E6%B5%8B%E8%AF%95mysql.jpg" class="">
+
+<p>输入密码后进入，确认到mysql安装成功</p>
+<p>使用命令 <code>quit</code>,退出mysql</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%80%80%E5%87%BAmysql.jpg" class="">
+
+<h1 id="安装php"><a href="#安装php" class="headerlink" title="安装php"></a>安装php</h1><p>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:ondrej&#x2F;php &amp;&amp; sudo apt-get update</span><br><span class="line">sudo apt-get -y install php7.2</span><br></pre></td></tr></table></figure>
+
+<p>在安装php时可能出现某某网站链接失败的问题，跟着提示走就可以了，在网上冲浪是发现说是有关 ppa的网站都都下的挺慢的……..</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%AE%89%E8%A3%85php.jpg" class="">
+
+<p>下面是一些php常用扩展，由于下载太慢本人还没装完 ，用的时候在装吧….</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-getinstall php7.2-gd</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-soap</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-gmp</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-pspell</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-bcmath</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-enchant</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-imap</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-ldap</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-opcache</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-readline</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-sqlite3</span><br><span class="line"></span><br><span class="line">sudo apt-getinstall php7.2-xmlrpc</span><br></pre></td></tr></table></figure>
+
+
+
+<p>到此为止，我们的web服务器环境基本上是安装完成</p>
+<p>再来就是到布置页面的根目录写入页面了</p>
+<h1 id="部署页面"><a href="#部署页面" class="headerlink" title="部署页面"></a>部署页面</h1><p>在写入页面之前可以先安装一些工具来方便我们的编辑 例如vim</p>
+<p>命令：<code>apt install vim</code></p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E4%B8%8B%E8%BD%BDvim.jpg" class="">
+
+<p>在安装好vim后我们就可以开始写入我们的目标页面了</p>
+<p>首先在apache放置网站资源的根目录打开终端</p>
+<p>这里是默认的目录 <code>cd /var/www/html/</code></p>
+<p>进入后删除默认页面<code>rm index.html</code></p>
+<p>新建一个文件夹，在这个文件夹内写入iframe中的一个页面</p>
+<p><code>mkdir /var/www/html/1</code></p>
+<p><code>vim /var/www/html/1/2.html</code></p>
+<p>写入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>欢迎加入智邮普创<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>创建新页面 <code>echo &gt; index.html</code></p>
+<p>使用vim写入内容<code>vim index.html</code></p>
+<p>输入<code>i</code>插入内容，这里我们直接复制就ok了</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E5%86%99%E5%85%A5%E9%A1%B5%E9%9D%A2.jpg" class="">
+
+<p>这里我已经将源代码改好了<del>这里之前<code>width</code>和<code>height</code>的参数都是0，能显示出来才怪啊喂</del></p>
+<p>按 <code>esc</code></p>
+<p> 输入<code>:wq</code>保存并退出</p>
+<p>然后在我们的浏览器内输入ip试着访问访问试试</p>
+<img src="/2021/03/16/%E4%BD%BF%E7%94%A8Ubuntu%E6%90%AD%E5%BB%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8/%E9%A1%B5%E9%9D%A2.jpg" class="">
+
+<p>但是还是没字</p>
+<p>问题有待解决</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>回想我搭建web服务器的过程，我使用的是LAMP框架</p>
+<p>在这里解释什么是LAMP</p>
+<p><em>LAMP=Linux+Apache+Mysal+Php</em></p>
+<p>Linux:这里用的是Ubuntu20.04,作为服务器的操作系统</p>
+<p>Apache：提供web服务</p>
+<p>mysql：提供数据的储存</p>
+<p>php：编程语言</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/web/" rel="tag"># web</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/16/VMware%E5%85%A7%E5%AE%89%E8%A3%85Ubuntu/" rel="prev" title="使用VMware安装Ubuntu">
+                  <i class="fa fa-chevron-left"></i> 使用VMware安装Ubuntu
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/18/burpsuite%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/" rel="next" title="Burpsuite抓包分析">
+                  Burpsuite抓包分析 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AAni021</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">14k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">13 分钟</span>
+  </span>
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i>
+<span id="busuanzi_container_site_uv">
+  本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+</span>
+<span id="busuanzi_container_site_pv">
+    &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+</div>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
